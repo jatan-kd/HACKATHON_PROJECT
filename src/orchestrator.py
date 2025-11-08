@@ -4,10 +4,10 @@ import os
 import time
 from langchain_openai import AzureChatOpenAI
 from traitlets import Any
-from agents.mastergraph import MasterGraph
-from utilities.state import AgentHistory  # Ensure this import exists
+from src.agents.mastergraph import MasterGraph
+from src.utilities.state import AgentHistory  # Ensure this import exists
 from langchain_core.messages import SystemMessage,HumanMessage
-import constants
+from src import constants
 from langgraph.pregel.types import StateSnapshot
 
 class GroomingAgent:

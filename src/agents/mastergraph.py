@@ -1,7 +1,7 @@
 from langgraph.graph import START, END, StateGraph
 from langgraph.checkpoint.memory import MemorySaver
-from masterfunctions.functions import MasterFunctions
-from utilities.state import AgentHistory
+from src.masterfunctions.functions import MasterFunctions
+from src.utilities.state import AgentHistory
 from IPython.display import Image
 
 
