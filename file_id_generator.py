@@ -1,17 +1,14 @@
 from pymongo import MongoClient
 import json
+import os
 
 def store_payload_in_mongodb(payloadData):
     try:
         # --- Fixed MongoDB connection details ---
-        mongo_uri = (
-            "mongodb+srv://devleodocteamrw:N3EeQi7d3KoHpvLg@dev-leo-tenant.yjm1a.mongodb.net/"
-            "Techathon-Bacardi?ssl=true&authSource=admin&retryWrites=true&"
-            "readPreference=primary&w=majority&wtimeoutMS=5000&readConcernLevel=majority&"
-            "retryReads=true&appName=docteamrw"
-        )
-        database_name = "Techathon-Bacardi"
-        collection_name = "jirastorysummarizerdata"
+        mongo_uri = os.getenv("MONGO_CONN_STRING")
+        database_name = os.getenv("MONGO_DB_NAME")
+        collection_name = os.getenv("MONGO_COLLECTION_NAME")
+ 
 
         # --- Connect to MongoDB ---
         client = MongoClient(mongo_uri)

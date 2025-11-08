@@ -87,6 +87,9 @@ uvicorn==0.32.0
 pydantic==2.9.2
 pymongo
 easyocr
+jira
+ipython
+bs4
 
 # #Internal
 # ds-leo==0.2.11

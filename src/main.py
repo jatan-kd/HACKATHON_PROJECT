@@ -22,7 +22,6 @@ import pandas as pd
 from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
 from masterfunctions.functions import MasterFunctions
-sys.path.append("C:/Users/Ansh.Chirawawala/Techathon_BACARDI")
 
 
 grooming_agent = None
@@ -119,16 +118,6 @@ async def respond_with_message(
     issuccess, message, output = grooming_agent.execute(
             user_input=user_input,
         )
-    # try:
-    #     print("Executing GroomingAgent")
-    #     message = grooming_agent.grooming_agent(user_input=user_input)
-    #     # logger.info(f"GroomingAgent execution completed with message: {message["messages"]}")
-    # except Exception as e:
-    #     print(f"Error executing GroomingAgent: {str(e)}")
-    #     return JSONResponse(
-    #         content={"status": 0, "message": "Agent execution failed", "conversationMessages": []},
-    #         status_code=500,
-    #     )
 
     if message:
         status_code = 200

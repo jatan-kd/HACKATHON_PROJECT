@@ -151,28 +151,3 @@ class KnowledgeBaseFetcher:
         clean = self.html_to_clean_text(storage)
 
         return clean
-
-
-# if __name__ == "__main__":
-#     # Hardcoded Confluence page URL (Invoice Basic Flow)
-#     HARDCODED_URL = (
-#         "https://smartbygep.atlassian.net/wiki/spaces/~712020fb23db945f4b48a78712d6e43ffb656e/"
-#         "pages/5049483275/Invoice+Basic+Flow"
-#     )
-
-#     # NOTE: Credentials are hardcoded below per user request. This is insecure
-#     # and should NOT be committed to source control. Remove before sharing.
-#     JIRA_SERVER = "https://smartbygep.atlassian.net/"
-#     username = "ansh.chirawawala@gep.com"
-#     token = (
-#         "ATATT3xFfGF0J11aWFx0tfJX-oYC5FjIV8jI_NQ8FTXaT74EUGpHtCJiBkijW5tZdNjU6wIkhfCTn2CYykF"
-#         "VTrXjHA4CDivsZ0wcfp7nLV_6i1g3nsJhCe8QeM9oqFvOMeuJIOHL42T2GsaUgW3Q3LXAjoZrlX_Z_I7XAK3"
-#         "5HLd7FieR2genx0g=A2622883"
-#     )
-
-#     try:
-#         out_file = fetch_confluence_page(HARDCODED_URL, username=username, token=token)
-#         print("Saved cleaned page to", out_file)
-#     except Exception as e:
-#         print("ERROR:", e)
-#         raise
