@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: #{AppName}-service
+  namespace: #{Namespace}
+spec:
+  type: #{ServiceType} ##ClusterIP for ingress or LoadBalancer
+  selector:
+    app: #{AppName}
+  ports:
+  - name: http
+    port: #{Port}
+    targetPort: #{targetport}
+    protocol: TCP

@@ -1,0 +1,20 @@
+  
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: #{AppName}-pvc
+  namespace: #{Namespace}
+  # Set this annotation to NOT let Kubernetes automatically create
+  # a persistent volume for this volume claim.
+  annotations:
+    volume.beta.kubernetes.io/storage-class: ""
+spec:
+  accessModes:
+    - #{AccessModes}
+  resources:
+    requests:
+      storage: #{StorageCapacity}
+  selector:
+    # To make sure we match the claim with the exact volume, match the label
+    matchLabels:
+      app: #{AppName}-pv

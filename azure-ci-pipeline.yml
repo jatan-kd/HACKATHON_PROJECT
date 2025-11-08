@@ -1,0 +1,42 @@
+parameters:
+- name: 'BuildTemplatePath'
+  default: 'AKS-AWS-CombinedDeployment-API-DS/AKS-AWS-CombinedDeployment-API-CI-template.yml@TemplateRepo'
+  type: string
+
+name: $(date:yyyyMMdd)$(rev:.r)
+
+trigger:
+- $(Build.SourceBranchName)
+
+pool:
+  vmImage: ubuntu-latest
+
+resources:
+  repositories:
+  - repository: TemplateRepo # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: GitHub-Admin (DESA)
+    name: GEP-GitHub/Leo.ADO.PipelinesAsCode
+    ref: DEVELOPMENT
+    steps:
+      - checkout: TemplateRepo
+      - script: dir $(Build.SourcesDirectory)
+
+variables:
+- template: pipeline-variables.yml
+
+stages:
+- stage: Build
+  displayName: 'Build'
+  #condition: eq('1', '2')
+  jobs:
+  - template: ${{ parameters.BuildTemplatePath }}  # Template reference
+    parameters:
+      developerRepoName: '$(developerRepoName)'
+      testFilesForSonar: '$(testFilesForSonar)'
+      SAST_Coverity_Pool: '$(SAST_Coverity_Pool)'      
+      PytonVersion: '$(PytonVersion)'
+      PipAuthenticateFeed: '$(PipAuthenticateFeed)'
+      ServiceConnection: '$(ServiceConnection)'      
+      folderPathToCoveragerc: '$(folderPathToCoveragerc)'
+      folderPathTo_requirements_txt: '$(folderPathTo_requirements_txt)'

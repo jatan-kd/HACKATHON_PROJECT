@@ -1,0 +1,29 @@
+{
+  "DeveloperDomain": {
+    "USERNAME": "QEXdMhlPI4wqQNW9kabT4r9jr/ZJXrU9IZI63WFlWg0=",
+    "PASSWORDAPI": "iCLgJZ4E0SHAMarWT5BiKA==",
+    "BUYERPARTNERCODE": "RvrS3w6LzH7h1gbTQ698Og==",
+    "APIURL": "https://smartqc-sts.gep.com/SmartAuth/GetJWTForGEPAutomationSuite",
+    "PARTNERCODE": "RvrS3w6LzH7h1gbTQ698Og==",
+    "BaseUrl": "https://api-leoaksqc.gep.com/",
+    "OcpSubscriptionKey" : "9a40eb850ab2464b85439a18fd261754"
+  },
+  "CaterpillarDirect": {
+    "USERNAME": "dDNG2l5lQ2LK2yCNu5ZHhmXqQrnE/BQx9CJN0j0claw=",
+    "PASSWORDAPI": "iCLgJZ4E0SHAMarWT5BiKA==",
+    "BUYERPARTNERCODE": "RC2V6OezDoVdUiJWiv43iw==",
+    "APIURL": "https://smartqc-sts.gep.com/SmartAuth/GetJWTForGEPAutomationSuite",
+    "PARTNERCODE": "RC2V6OezDoVdUiJWiv43iw==",
+    "BaseUrl": "https://api-leoaksqc.gep.com/",
+    "OcpSubscriptionKey" : "9a40eb850ab2464b85439a18fd261754"
+  },
+  "BOFA": {
+    "USERNAME": "kcEVS2qfwCBuW4MYBSjAz4eftyktpsOKlwM//JVSOgQ=",
+    "PASSWORDAPI": "iCLgJZ4E0SHAMarWT5BiKA==",
+    "BUYERPARTNERCODE": "4XZdqxXerDZ08So+osOIOg==",
+    "APIURL": "https://smartqc-sts.gep.com/SmartAuth/GetJWTForGEPAutomationSuite",
+    "PARTNERCODE": "4XZdqxXerDZ08So+osOIOg==",
+    "BaseUrl": "https://api-leoaksqc.gep.com/",
+    "OcpSubscriptionKey" : "9a40eb850ab2464b85439a18fd261754"
+  }
+}

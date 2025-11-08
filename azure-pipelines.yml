@@ -1,0 +1,52 @@
+parameters:
+- name: 'BuildTemplatePath'
+  default: 'AKS-AWS-CombinedDeployment-API-DS/AKS-AWS-CombinedDeployment-API-build-template.yml@TemplateRepo'
+  type: string
+- name: 'MultiRegionTemplatePath'
+  default: 'AKS-AWS-CombinedDeployment-API/CombinedMultiStage-Region-DevtoProd-API-deployment-template.yml@TemplateRepo'
+  type: string
+  
+
+name: $(date:yyyyMMdd)$(rev:.r)
+
+trigger:
+- $(Build.SourceBranchName)
+
+pr: none
+
+pool:
+  vmImage: ubuntu-latest
+
+resources:
+  repositories:
+  - repository: TemplateRepo # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: GitHub-Admin (DESA)
+    name: GEP-GitHub/Leo.ADO.PipelinesAsCode
+    ref: DEVELOPMENT
+    steps:
+      - checkout: TemplateRepo
+        clean: true
+
+variables:
+- template: pipeline-variables.yml
+
+stages:
+- stage: Build
+  displayName: 'Build'
+  jobs:
+  - template: ${{ parameters.BuildTemplatePath }}  # Template reference
+    parameters:
+      developerRepoName: '$(developerRepoName)'
+      folderPathTo_deployment_yml: '$(folderPathTo_deployment_yml)'
+      folderPathTo_Dockerfile: '$(folderPathTo_Dockerfile)'
+      folderPathTo_requirements_txt: '$(folderPathTo_requirements_txt)'
+      folderPathTo_py_files: '$(folderPathTo_py_files)'      
+      PipAuthenticateFeed: '$(PipAuthenticateFeed)'
+      ServiceConnection: '$(ServiceConnection)'
+      IMAGENAME: '$(IMAGENAME)'
+      INDEX_URL: '$(INDEX_URL)'
+      
+- template: ${{ parameters.MultiRegionTemplatePath }}  # Template reference
+
+...

@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: #{AppName}-deployment
+  namespace: #{Namespace}
+spec:
+  selector:
+    matchLabels:
+      app: #{AppName}
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  replicas: #{ReplicasCount}
+  template:
+    metadata:
+      labels:
+        app: #{AppName}
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - #{AppName}
+                topologyKey: kubernetes.io/hostname
+      containers:
+      - name: #{AppName}
+        image: #{ContainterRegistry}/#{AppName}:v__BuildNumber__
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          successThreshold: 1
+          failureThreshold: 3
+          httpGet:
+            path: #{HealthCheckPath}
+            port: #{ContainerPort}
+            scheme: HTTP
+          initialDelaySeconds: #{InitialDelaySeconds}
+          periodSeconds: #{ProbePeriodSeconds}
+          timeoutSeconds: #{TimeoutSeconds}
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: #{HealthCheckPath}
+            port: #{ContainerPort}
+            scheme: HTTP
+          initialDelaySeconds: #{InitialDelaySeconds}
+          periodSeconds: #{ProbePeriodSeconds}
+          successThreshold: 1
+          timeoutSeconds: #{TimeoutSeconds}
+        ports:
+        - containerPort: #{ContainerPort}
+          name: http
+          protocol: TCP
+          #port: #{Port} # If we want to define port explicitly
+        - containerPort: #{HttpsContainerPort}
+          name: https
+          protocol: TCP
+        envFrom:
+         - configMapRef:
+             name: #{AppName}-config
+        resources:
+          requests:
+            cpu: #{RequestCPU} #In Cores .e.g. 250m denotes .25 of 1 vCore, 1 denotes 1 vCore
+            memory: #{RequestMemory} #In MB e.g. 32Mi
+          limits:
+            cpu: #{LimitsCPU}
+            memory: #{LimitsMemory}
+      nodeSelector:
+        kubernetes.io/os: #{NodeType}
+      restartPolicy: Always
+      terminationGracePeriodSeconds: #{TerminationGracePeriodseconds}

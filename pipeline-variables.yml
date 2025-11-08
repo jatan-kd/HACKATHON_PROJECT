@@ -1,0 +1,20 @@
+﻿variables:
+  SAST_Coverity_Pool: USAZBLDCTRLLEO33
+  folderPathTo_deployment_yml: k8s.deployment
+  BuildNumber: $(Build.BuildNumber)
+  folderPathToCoveragerc: ""
+  IMAGENAME: leo-invoice-matching-agent
+  folderPathTo_Dockerfile: ''
+  DevelopmentTeam_emailDL: Nexxe_Invoice@gep.com
+  developerRepoName: Leo.Invoice.Matching.Agent
+  testFilesForSonar: tests/
+  PytonVersion: 3.12.7
+  codeowners: nikunj.vasa@gep.com
+  PipAuthenticateFeed: Leo.DS.Artifacts/Leo_DataScience
+  OctopusProjectName_Staging: Leo.Invoice.Matching.Agent_k8s_Staging_IND
+  INDEX_URL: PIP_EXTRA_INDEX_URL
+  OctopusProjectName_Release: Leo.Invoice.Matching.Agent_k8s_Release_IND
+  folderPathTo_py_files: ''
+  ServiceConnection: Leo_new
+  folderPathTo_requirements_txt: ""
+  OctopusProjectName_Dev: Leo.Invoice.Matching.Agent_k8s_Dev_IND

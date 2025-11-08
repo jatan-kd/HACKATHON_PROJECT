@@ -1,0 +1,61 @@
+#================== Update Vaules Start =============
+parameters:
+- name: 'toMail'
+  default: 'Akshay.Patil@gep.com'                             #{a list of email addresses should be comma separated without space ex.; test1@gep.com,test2@gep.com}
+  type: string
+- name: 'ccMail'
+  default: 'vikash.kumar@gep.com'                             #{toMail and ccMail should be different and both are mandatory}
+  type: string
+- name: 'npxCypressCommand'
+  default: 'npx cypress run --env client=BOFA,env=dev;'
+  type: string
+
+variables:
+- name: developerRepoName
+  value: 'leo.analytics.automation.api' 
+- name: fileName
+  value: 'Cypress_LEO_Analytics_API_' 
+- name: folderName
+  value: 'Cypress_LEO_Analytics-API'
+- name: packageJsonPath
+  value: 'AutomationTesting/API'   
+#================== Update Vaules Done =============
+
+#========== Don't change anything below ================
+- name: BuildTemplatePath
+  value: 'Cypress-Automation/Cypress-Build-Template.yml@TemplateRepo'
+
+name: $(date:yyyyMMdd)$(rev:.r)
+
+trigger:
+- $(Build.SourceBranchName)
+
+pool:
+  vmImage: windows-latest
+
+resources:
+  repositories:
+  - repository: TemplateRepo # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: GitHub-Admin (DESA)
+    name: GEP-GitHub/Leo.ADO.PipelinesAsCode
+    ref: DEVELOPMENT
+    steps:
+      - checkout: TemplateRepo
+        clean: true
+
+
+
+stages:
+- stage: Build
+  displayName: 'Build'
+  jobs:
+  - template: ${{ variables.BuildTemplatePath }}  # Template reference
+    parameters:
+      developerRepoName: '$(developerRepoName)'
+      fileName: '$(fileName)'
+      packageJsonPath: '$(packageJsonPath)'
+      folderName: '$(folderName)'
+      toMail: '${{ parameters.toMail }}'
+      ccMail: '${{ parameters.ccMail }}'
+      npxCypressCommand: '${{ parameters.npxCypressCommand }}'
