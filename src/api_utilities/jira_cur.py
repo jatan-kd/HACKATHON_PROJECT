@@ -3,7 +3,6 @@ import os
 import re
 from dotenv import load_dotenv
 load_dotenv()
-import easyocr
 import json
 
 class JiraDataFetcher:
@@ -16,8 +15,6 @@ class JiraDataFetcher:
             server=jira_server,
             basic_auth=(username, api_token)
         )
-
-        self.reader = easyocr.Reader(['en'], gpu=False)
 
     def get_jira_details(self, jira_id):
         try:

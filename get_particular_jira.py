@@ -1,7 +1,6 @@
 from jira import JIRA
 import re
 import json
-import easyocr
 
 class JiraDataFetcher:
     def __init__(self, jira_server, username, api_token):
@@ -13,8 +12,6 @@ class JiraDataFetcher:
             server=jira_server,
             basic_auth=(username, api_token)
         )
-
-        self.reader = easyocr.Reader(['en'], gpu=False)
 
     def get_jira_details(self, jira_id):
         try:
