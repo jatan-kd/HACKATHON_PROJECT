@@ -109,7 +109,7 @@ class MongoToJiraPusher:
 
         summary = doc.get("summarized_data")
         if not summary:
-            raise PushError("Document does not contain 'summary' field")
+            raise PushError("Document does not contain 'summarized_data' field")
 
         logger.info("Posting summary for Mongo file '%s' to Jira issue %s", file_id, issue_key)
         try:
